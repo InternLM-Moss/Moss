@@ -56,7 +56,7 @@ Moss是基于 LLM 的任务机器人助手，以下几大能力：
   python manage.py runserver
   ```
 
-## 微信聊天机器人
+## Assistant 微信机器人
 
 本文参考 https://github.com/ethanhwang1024/AI-Operating-Wechat 
 
