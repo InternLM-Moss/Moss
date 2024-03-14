@@ -58,6 +58,8 @@ Moss是基于 LLM 的任务机器人助手，以下几大能力：
 
 ## Assistant 微信机器人
 
+**代码路径:** `MOSS/assistant`
+
 本文参考 [AI-Operating-Wechat ](https://github.com/ethanhwang1024/AI-Operating-Wechat)
 
 实现自动回复微信聊天，支持私聊和群聊（需要手动@）。只支持中文Windows客户端。
