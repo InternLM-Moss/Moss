@@ -4,8 +4,8 @@
     <a href=""><img src="https://img.shields.io/badge/series-AI_Operating-yellow.svg"></a>
     <a href=""><img src="https://img.shields.io/badge/python-3.9+-aff.svg"></a>
 </p>
-基于大模型的AI任务机器人系统，添加 [微信](assets/moss_bot_wechat.png) 直接体验群聊助手效果
 
+基于大模型的AI任务机器人系统，添加[微信](assets/moss_bot_wechat.png)直接体验Moss🤖效果
 
 Moss是基于 LLM 的任务机器人助手，以下几大能力：
 
@@ -69,7 +69,7 @@ Moss是基于 LLM 的任务机器人助手，以下几大能力：
   pip install -r assistant/requirement.txt
   ```
 
-- 打开电脑微信窗口，确保整个窗口可见，并将文件传输助手右键置顶  
+- 打开电脑微信窗口，确保整个窗口可见
 
 - 运行程序
   ```bash 
