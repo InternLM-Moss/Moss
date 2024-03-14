@@ -1,0 +1,7 @@
+diggerLM/__pycache__/
+diggerLM/test/
+diggerLM/service/__pycache__/
+cookjobs/server/data.sqlite
+cookjobs/website/pages/.DS_Store
+cookjobs/server/__pycache__/
+cookjobs/test/
