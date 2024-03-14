@@ -1,0 +1,13 @@
+{
+    "type": "page",
+    "initApi": {
+        "method": "get",
+        "url": "/api/home"
+    },
+    "body": [
+        {
+            "type": "tpl",
+            "tpl": "您好，欢迎使用Moss后台任务管理系统 </br></br></br>"
+        }
+    ]
+}
