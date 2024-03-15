@@ -18,7 +18,7 @@ Moss是基于 LLM 的任务机器人助手，以下几大能力：
 
 ![DiggerLM 大模型机器人](assets/moss_bot_wechat_shot1.png)
 
-**代码路径:** `MOSS/diggerLM`
+**代码路径:** `Moss/diggerLM`
 
 ### 环境部署
 
@@ -45,7 +45,7 @@ Moss是基于 LLM 的任务机器人助手，以下几大能力：
 
 ![CookJobs 作业后台管理系统 ](assets/moss_cookjobs_shot1.png)
 
-**代码路径:** `MOSS/cookjobs`
+**代码路径:** `Moss/cookjobs`
 
 - 初始化DB: SQLlite3
 
@@ -62,7 +62,7 @@ Moss是基于 LLM 的任务机器人助手，以下几大能力：
 
 ## Assistant 微信机器人
 
-**代码路径:** `MOSS/assistant`
+**代码路径:** `Moss/assistant`
 
 本文参考 [AI-Operating-Wechat ](https://github.com/ethanhwang1024/AI-Operating-Wechat)
 
