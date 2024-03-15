@@ -14,7 +14,9 @@ Moss是基于 LLM 的任务机器人助手，以下几大能力：
 3. 一套完整的作业后台管理系统，部署成本低，可扩展性极强：采用 ```低代码平台``` + ```Falcon RESTful API```
 
 
-## DiggerLM 大模型任务管理 
+## DiggerLM 大模型机器人 
+
+![DiggerLM 大模型机器人](assets/moss_bot_wechat_shot1.png)
 
 **代码路径:** `MOSS/diggerLM`
 
@@ -40,6 +42,8 @@ Moss是基于 LLM 的任务机器人助手，以下几大能力：
   ```
 
 ## CookJobs 作业后台管理系统 
+
+![CookJobs 作业后台管理系统 ](assets/moss_cookjobs_shot1.png)
 
 **代码路径:** `MOSS/cookjobs`
 
