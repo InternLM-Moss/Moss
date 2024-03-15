@@ -14,7 +14,9 @@ Moss是基于 LLM 的任务机器人助手，以下几大能力：
 3. 一套完整的作业后台管理系统，部署成本低，可扩展性极强：采用 ```低代码平台``` + ```Falcon RESTful API```
 
 
-<video src="https://github.com/InternLM-Moss/Moss/tree/main/assets/moss_video.mp4" width="640" height="480" controls></video>
+
+https://github.com/InternLM-Moss/Moss/assets/3377105/11906592-7f56-4ee4-b884-50a4e3ef61c2
+
 
 ## DiggerLM 大模型机器人 
 
