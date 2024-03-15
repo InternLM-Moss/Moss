@@ -5,3 +5,4 @@ cookjobs/server/data.sqlite
 cookjobs/website/pages/.DS_Store
 cookjobs/server/__pycache__/
 cookjobs/test/
+.DS_Store
