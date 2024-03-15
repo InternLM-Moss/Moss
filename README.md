@@ -86,3 +86,7 @@ https://github.com/InternLM-Moss/Moss/assets/3377105/11906592-7f56-4ee4-b884-50a
   cd assistant
   python main.py
   ```
+
+## 技术架构流程
+
+![](assets/moss_process.png)
