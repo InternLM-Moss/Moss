@@ -2,144 +2,186 @@
     "type": "page",
     "body": [
         {
-            "label": "创建Moss任务",
-            "type": "button",
-            "actionType": "dialog",
-            "level": "primary",
-            "className": "m-b-sm",
-            "dialog": {
-                "title": "创建Moss任务",
-                "body": {
-                    "type": "form",
-                    "api": "post:/api/jobs/wechat",
-                    "body": [
-                        {
-                            "type": "button-group-select",
-                            "name": "llm_name",
-                            "label": "大模型选择",
-                            "btnLabel": 0,
-                            "clearable": true,
-                            "options": [
+            "type": "button-toolbar",
+            "buttons": [
+                {
+                    "type": "button",
+                    "label": "创建Moss任务",
+                    "level": "primary",
+                    "actionType": "drawer",
+                    "drawer": {
+                        "position": "right",
+                        "size": "lg",
+                        "title": "创建Moss作业任务",
+                        "body": {
+                            "type": "form",
+                            "api": "post:/api/jobs/wechat",
+                            "body": [
                                 {
-                                    "label": "通用",
-                                    "value": 0
-                                },
-                                {
-                                    "label": "运维领域",
-                                    "value": 1
-                                },
-                                {
-                                    "label": "金融领域",
-                                    "value": 2
-                                }
-                            ],
-                            "required": true
-                        },
-                        {
-                            "type": "divider"
-                        },
-                        {
-                            "type": "list-select",
-                            "name": "api_type",
-                            "label": "API调用方式",
-                            "clearable": true,
-                            "options": [
-                                {
-                                    "label": "POST",
-                                    "value": "post"
-                                },
-                                {
-                                    "label": "GET",
-                                    "value": "get"
-                                }
-                            ],
-                            "required": true
-                        },
-                        {
-                            "type": "input-text",
-                            "name": "job_name",
-                            "label": "任务名称",
-                            "placeholder": "填写任务名称",
-                            "required": true
-                        },
-                        {
-                            "type": "input-text",
-                            "name": "job_nlu",
-                            "label": "识别任务语句",
-                            "placeholder": "大模型识别用户需求语句，进而执行相应任务",
-                            "required": true
-                        },
-                        {
-                            "type": "input-sub-form",
-                            "label": "槽位分析",
-                            "name": "slot_data",
-                            "btnLabel": "${slot_key}",
-                            "multiple": true,
-                            "form": {
-                                "title": "槽位分析",
-                                "body": [
-                                    {
-                                        "type": "radios",
-                                        "name": "slot_type",
-                                        "label": "类型选择",
-                                        "inline": true,
-                                        "options": [
-                                            {
-                                                "label": "大模型识别",
-                                                "value": "0"
-                                            },
-                                            {
-                                                "label": "正则识别",
-                                                "value": "1"
-                                            }
-                                        ],
-                                        "required": true
-                                    },
-                                    {
-                                        "name": "slot_key",
-                                        "type": "input-text",
-                                        "placeholder": "只支持英文变量",
-                                        "label": "槽位变量",
-                                        "validations": {
-                                            "isAlpha": true
+                                    "type": "list-select",
+                                    "name": "llm",
+                                    "label": "大模型选择",
+                                    "btnLabel": 0,
+                                    "clearable": true,
+                                    "options": [
+                                        {
+                                            "label": "通用-InternLM",
+                                            "value": 0
                                         },
-                                        "required": true
-                                    },
-                                    {
-                                        "type": "input-text",
-                                        "label": "槽位语义",
-                                        "placeholder": "设置语义获取槽位",
-                                        "name": "slot_desc",
-                                        "required": true
-                                    },
-                                    {
-                                        "type": "input-text",
-                                        "label": "正则表达式",
-                                        "placeholder": "支持使用正则表达式规则",
-                                        "hiddenOn": "data.slot_type != 1",
-                                        "name": "regexs",
-                                        "required": true
-                                    }
-                                ]
-                            },
-                            "required": true
-                        },
-                        {
-                            "type": "textarea",
-                            "name": "api",
-                            "label": "调用api地址",
-                            "placeholder": "可引用槽位变量，如使用GET请求：https://xxx.xxx.com/apitest?key1={{solt_name1}}&key2={{slot_name2}}",
-                            "required": true
-                        },
-                        {
-                            "type": "input-text",
-                            "name": "comment",
-                            "label": "备注",
-                            "required": true
+                                        {
+                                            "label": "运维领域",
+                                            "value": 1,
+                                            "disabled": true
+                                        },
+                                        {
+                                            "label": "金融领域",
+                                            "value": 2,
+                                            "disabled": true
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "type": "button-group-select",
+                                    "name": "api_type",
+                                    "label": "调用方式",
+                                    "clearable": true,
+                                    "options": [
+                                        {
+                                            "label": "文本信息",
+                                            "value": "txt_msg"
+                                        },
+                                        {
+                                            "label": "POST",
+                                            "badge": {
+                                                "mode": "ribbon",
+                                                "text": "API"
+                                            },
+                                            "value": "post"
+                                        },
+                                        {
+                                            "label": "GET",
+                                            "badge": {
+                                                "mode": "ribbon",
+                                                "text": "API"
+                                            },
+                                            "value": "get"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                {
+                                    "type": "input-text",
+                                    "name": "job_name",
+                                    "label": "任务名称",
+                                    "placeholder": "填写任务名称",
+                                    "required": true
+                                },
+                                {
+                                    "type": "combo",
+                                    "name": "job_nlu",
+                                    "label": "识别任务语句",
+                                    "multiple": true,
+                                    "required": true,
+                                    "value": [
+                                        {}
+                                    ],
+                                    "items": [
+                                        {
+                                            "name": "job_nlu_item",
+                                            "type": "input-text",
+                                            "placeholder": "识别用户需求语句，进而执行相应任务（可设置多条）",
+                                            "value": "",
+                                            "columnClassName": "w-sm"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "combo",
+                                    "name": "slot_data",
+                                    "label": "槽位分析",
+                                    "visibleOn": "${OR(api_type === 'post', api_type === 'get')}",
+                                    "multiple": true,
+                                    "multiLine": true,
+                                    "required": true,
+                                    "inline": true,
+                                    "value": [
+                                        {}
+                                    ],
+                                    "items": [
+                                        {
+                                            "type": "radios",
+                                            "name": "slot_type",
+                                            "label": "",
+                                            "inline": true,
+                                            "options": [
+                                                {
+                                                    "label": "大模型识别",
+                                                    "value": "0"
+                                                },
+                                                {
+                                                    "label": "正则识别",
+                                                    "value": "1"
+                                                }
+                                            ],
+                                            "required": true
+                                        },
+                                        {
+                                            "name": "slot_key",
+                                            "type": "input-text",
+                                            "placeholder": "只支持英文变量",
+                                            "label": "槽位变量",
+                                            "validations": {
+                                                "isAlpha": true
+                                            },
+                                            "required": true
+                                        },
+                                        {
+                                            "type": "input-text",
+                                            "label": "正则表达式",
+                                            "placeholder": "支持使用正则表达式规则",
+                                            "hiddenOn": "data.slot_type != 1",
+                                            "name": "regexs",
+                                            "required": true
+                                        },
+                                        {
+                                            "type": "input-text",
+                                            "label": "用户提示",
+                                            "placeholder": "提示用户槽位值语句",
+                                            "name": "slot_desc",
+                                            "required": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "textarea",
+                                    "name": "api",
+                                    "label": "调用api地址",
+                                    "visibleOn": "${OR(api_type === 'post', api_type === 'get')}",
+                                    "placeholder": "可引用槽位变量，如使用GET请求：https://xxx.xxx.com/apitest?key1={{solt_name1}}&key2={{slot_name2}}",
+                                    "required": true
+                                },
+                                {
+                                    "type": "textarea",
+                                    "name": "txt_msg",
+                                    "label": "返回文本信息",
+                                    "visibleOn": "${api_type === 'txt_msg'}",
+                                    "placeholder": "",
+                                    "required": true
+                                },
+                                {
+                                    "type": "input-text",
+                                    "name": "comment",
+                                    "label": "备注"
+                                }
+                            ]
                         }
-                    ]
+                    }
                 }
-            }
+            ]
         },
         {
             "type": "crud",
@@ -157,22 +199,27 @@
                     "label": "作业名称"
                 },
                 {
-                    "name": "job_nlu",
-                    "label": "识别任务语句"
-                },
-                {
-                    "name": "slot_json",
-                    "width": 300,
-                    "type": "json",
-                    "label": "槽位设置"
+                    "name": "job_nlu_web",
+                    "type": "list",
+                    "label": "识别任务语句",
+                    "listItem": {
+                        "body": "${item}"
+                    }
                 },
                 {
                     "name": "api_type",
-                    "label": "API调用方式"
+                    "label": "调用方式",
+                    "type": "mapping",
+                    "map": {
+                        "txt_msg": "<span class='label label-success'>文本信息</span>",
+                        "post": "<span class='label label-success'>POST</span>",
+                        "get": "<span class='label label-success'>GET</span>",
+                        "*": "<span class='label label-danger'>错误</span>"
+                    }
                 },
                 {
                     "name": "api",
-                    "label": "API调用地址"
+                    "label": "调用信息"
                 },
                 {
                     "name": "comment",
@@ -186,6 +233,194 @@
                     "type": "operation",
                     "label": "操作",
                     "buttons": [
+                        {
+                            "label": "修改",
+                            "type": "button",
+                            "actionType": "drawer",
+                            "drawer": {
+                                "position": "right",
+                                "size": "lg",
+                                "title": "修改Moss作业任务",
+                                "body": {
+                                    "type": "form",
+                                    "api": {
+                                        "method": "update",
+                                        "url": "/api/jobs/wechat",
+                                        "data": {
+                                            "id": "${id}",
+                                            "llm": "${llm}",
+                                            "api_type": "${api_type}",
+                                            "job_name": "${job_name}",
+                                            "job_nlu": "${job_nlu}",
+                                            "slot_data": "${slot_data}",
+                                            "api": "${api}",
+                                            "txt_msg": "${txt_msg}",
+                                            "comment": "${comment}"
+                                        }
+                                    },
+                                    "body": [
+                                        {
+                                            "type": "list-select",
+                                            "name": "llm",
+                                            "label": "大模型选择",
+                                            "btnLabel": 0,
+                                            "clearable": true,
+                                            "options": [
+                                                {
+                                                    "label": "通用-InternLM",
+                                                    "value": 0
+                                                },
+                                                {
+                                                    "label": "运维领域",
+                                                    "value": 1,
+                                                    "disabled": true
+                                                },
+                                                {
+                                                    "label": "金融领域",
+                                                    "value": 2,
+                                                    "disabled": true
+                                                }
+                                            ],
+                                            "required": true
+                                        },
+                                        {
+                                            "type": "divider"
+                                        },
+                                        {
+                                            "type": "button-group-select",
+                                            "name": "api_type",
+                                            "label": "调用方式",
+                                            "clearable": true,
+                                            "options": [
+                                                {
+                                                    "label": "文本信息",
+                                                    "value": "txt_msg"
+                                                },
+                                                {
+                                                    "label": "POST",
+                                                    "badge": {
+                                                        "mode": "ribbon",
+                                                        "text": "API"
+                                                    },
+                                                    "value": "post"
+                                                },
+                                                {
+                                                    "label": "GET",
+                                                    "badge": {
+                                                        "mode": "ribbon",
+                                                        "text": "API"
+                                                    },
+                                                    "value": "get"
+                                                }
+                                            ],
+                                            "required": true
+                                        },
+                                        {
+                                            "type": "input-text",
+                                            "name": "job_name",
+                                            "label": "任务名称",
+                                            "placeholder": "填写任务名称",
+                                            "required": true
+                                        },
+                                        {
+                                            "type": "combo",
+                                            "name": "job_nlu",
+                                            "label": "识别任务语句",
+                                            "multiple": true,
+                                            "required": true,
+                                            "value": "",
+                                            "items": [
+                                                {
+                                                    "name": "job_nlu_item",
+                                                    "type": "input-text",
+                                                    "placeholder": "识别用户需求语句，进而执行相应任务（可设置多条）",
+                                                    "value": "",
+                                                    "columnClassName": "w-sm"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "combo",
+                                            "name": "slot_data",
+                                            "label": "槽位分析",
+                                            "visibleOn": "${OR(api_type === 'post', api_type === 'get')}",
+                                            "multiple": true,
+                                            "multiLine": true,
+                                            "required": true,
+                                            "inline": true,
+                                            "value": [
+                                                {}
+                                            ],
+                                            "items": [
+                                                {
+                                                    "type": "radios",
+                                                    "name": "slot_type",
+                                                    "label": "",
+                                                    "inline": true,
+                                                    "options": [
+                                                        {
+                                                            "label": "大模型识别",
+                                                            "value": "0"
+                                                        },
+                                                        {
+                                                            "label": "正则识别",
+                                                            "value": "1"
+                                                        }
+                                                    ],
+                                                    "required": true
+                                                },
+                                                {
+                                                    "name": "slot_key",
+                                                    "type": "input-text",
+                                                    "placeholder": "只支持英文变量",
+                                                    "label": "槽位变量",
+                                                    "validations": {
+                                                        "isAlpha": true
+                                                    },
+                                                    "required": true
+                                                },
+                                                {
+                                                    "type": "input-text",
+                                                    "label": "正则表达式",
+                                                    "placeholder": "支持使用正则表达式规则",
+                                                    "hiddenOn": "data.slot_type != 1",
+                                                    "name": "regexs",
+                                                    "required": true
+                                                },
+                                                {
+                                                    "type": "input-text",
+                                                    "label": "用户提示",
+                                                    "placeholder": "提示用户槽位值语句",
+                                                    "name": "slot_desc",
+                                                    "required": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "textarea",
+                                            "name": "api",
+                                            "label": "调用api地址",
+                                            "visibleOn": "${OR(api_type === 'post', api_type === 'get')}",
+                                            "placeholder": "可引用槽位变量，如使用GET请求：https://xxx.xxx.com/apitest?key1={{solt_name1}}&key2={{slot_name2}}",
+                                            "required": true
+                                        },
+                                        {
+                                            "type": "textarea",
+                                            "name": "txt_msg",
+                                            "label": "返回文本信息",
+                                            "visibleOn": "${api_type === 'txt_msg'}",
+                                            "placeholder": "",
+                                            "required": true
+                                        },
+                                        {
+                                            "type": "input-text",
+                                            "name": "comment",
+                                            "label": "备注"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
                         {
                             "label": "删除",
                             "type": "button",
