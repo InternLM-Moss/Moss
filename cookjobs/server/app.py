@@ -22,9 +22,10 @@ class Jobs(Base):
     job_name = Column(String(256), nullable=False)
     job_nlu = Column(JSON, index=True, nullable=False)
     slot_json = Column(JSON, index=True, nullable=True)
+    txt_msg = Column(String(256), nullable=True)
     api = Column(String(256), nullable=False)
     api_type = Column(String(64), nullable=False)
-    comment = Column(String(256), nullable=False)
+    comment = Column(String(256), nullable=True)
     create_time = Column(DateTime(timezone=True), server_default=func.now())
 
 class Health(object):
