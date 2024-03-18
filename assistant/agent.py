@@ -97,10 +97,14 @@ def call_moss(groupname, username, content):
             "query": {"content": content, "type": "text"}, "query_id": str(uuid.uuid1()).replace("-", ""),
             "username": username}
     print(data)
-    response = requests.post(moss_api_url, json.dumps(data))
-    if response.status_code == HTTPStatus.OK:
-        res = response.json().get("reply")
-        print(res)
-        return res
-    else:
-        return "不知道哇"
+    try:
+        response = requests.post(moss_api_url, json.dumps(data))
+        if response.status_code == HTTPStatus.OK:
+            res = response.json().get("reply")
+            print(res)
+            return res
+        else:
+            return "Moss不知道哇"
+    except Exception as e:
+        print(e)
+        return "Moss下班啦，明天再来问问看吧! [工作时间 9:00~18:00]"
