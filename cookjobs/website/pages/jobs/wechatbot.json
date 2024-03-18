@@ -101,7 +101,7 @@
                                 },
                                 {
                                     "type": "combo",
-                                    "name": "slot_data",
+                                    "name": "slot_json",
                                     "label": "槽位分析",
                                     "visibleOn": "${OR(api_type === 'post', api_type === 'get')}",
                                     "multiple": true,
@@ -218,7 +218,7 @@
                     }
                 },
                 {
-                    "name": "api",
+                    "name": "web_msg",
                     "label": "调用信息"
                 },
                 {
@@ -252,7 +252,7 @@
                                             "api_type": "${api_type}",
                                             "job_name": "${job_name}",
                                             "job_nlu": "${job_nlu}",
-                                            "slot_data": "${slot_data}",
+                                            "slot_json": "${slot_json}",
                                             "api": "${api}",
                                             "txt_msg": "${txt_msg}",
                                             "comment": "${comment}"
@@ -341,7 +341,7 @@
                                         },
                                         {
                                             "type": "combo",
-                                            "name": "slot_data",
+                                            "name": "slot_json",
                                             "label": "槽位分析",
                                             "visibleOn": "${OR(api_type === 'post', api_type === 'get')}",
                                             "multiple": true,

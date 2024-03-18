@@ -32,10 +32,13 @@ class API_Jobs(object):
                 
                 txt_msg = ""
                 slot_json = []
+                web_msg = ""
                 try:
-                    slot_json = eval(j['slot_json']['slot_data'])
+                    slot_json = eval(j['slot_json'])
+                    web_msg = j['api']
                 except:
-                    txt_msg = j['slot_json']['slot_data']
+                    txt_msg = j['txt_msg']
+                    web_msg = txt_msg
 
 
                 data['rows'].append(
@@ -45,8 +48,9 @@ class API_Jobs(object):
                     "job_name": j['job_name'],
                     "job_nlu": eval(j['job_nlu']['job_nlu']),
                     "job_nlu_web":job_nlu_web,
-                    "slot_data": slot_json,
+                    "slot_json": slot_json,
                     "api_type": j['api_type'],
+                    "web_msg": web_msg,
                     "txt_msg": txt_msg,
                     "api": j['api'],
                     "llm": j['llm'],
@@ -61,39 +65,33 @@ class API_Jobs(object):
     def on_post(self, req, resp):
         data = json.load(req.bounded_stream)
        
-        # {'job_name': 'test', 'job_nlu': 'test', 'slot_data': [{'slot_type': '0', 'slot_key': 'tt', 'slot_desc': 'tttt'}, {'slot_type': '1', 'slot_key': 'aabb', 'regexs': '44444'}], 'api': 'test', 'comment': 'test', 'api_type': 'post'}
-
+        
         with api_utils.session_scope() as session:
-            # 如果选择的是 文本信息 调用方式
+
             if data['api_type'] == 'txt_msg':
-                job = self.Jobs(
+                slot_json = None
+                api = ""
+                txt_msg = data['txt_msg']
+            else:
+                slot_json = str(data['slot_json'])
+                api = data['api']
+                txt_msg = ""
+
+            if "comment" not in data:
+                comment = ""
+            else:
+                comment=data['comment']
+
+
+            job = self.Jobs(
                             llm=data['llm'],
                             job_name=data['job_name'], 
                             job_nlu={'job_nlu': str(data['job_nlu'])},
-                            slot_json={'slot_data': str(data['txt_msg'])},
-                            api=data['txt_msg'],
+                            slot_json=slot_json,
+                            txt_msg=txt_msg,
+                            api=api,
                             api_type=data['api_type'],
-                            comment=data['comment']
-                            )
-            elif data['api_type'] == 'get':
-                job = self.Jobs(
-                            llm=data['llm'],
-                            job_name=data['job_name'], 
-                            job_nlu={'job_nlu': str(data['job_nlu'])},
-                            slot_json={'slot_data': str(data['slot_data'])},
-                            api=data['api'],
-                            api_type=data['api_type'],
-                            comment=data['comment']
-                            )
-            elif data['api_type'] == 'post':
-                job = self.Jobs(
-                            llm=data['llm'],
-                            job_name=data['job_name'], 
-                            job_nlu={'job_nlu': str(data['job_nlu'])},
-                            slot_json={'slot_data': str(data['slot_data'])},
-                            api=data['api'],
-                            api_type=data['api_type'],
-                            comment=data['comment']
+                            comment=comment
                             )
             session.add(job)
 
@@ -128,7 +126,7 @@ class API_Jobs(object):
         更新作业任务
         """
         data = json.load(req.bounded_stream)
-        print(data)
+        
         with api_utils.session_scope() as session:
             job = (
                 session.query(self.Jobs)
@@ -142,10 +140,8 @@ class API_Jobs(object):
                 job.api_type=data['api_type']
                 job.job_name=data['job_name']
                 job.job_nlu={'job_nlu': str(data['job_nlu'])}
-                if data['api_type'] == 'txt_msg':
-                    job.slot_json={'slot_data': str(data['txt_msg'])}
-                else:
-                    job.slot_data={'slot_data': str(data['slot_data'])}
+                job.slot_json= str(data['slot_json'])
+                job.txt_msg=data['txt_msg']
                 job.api=data['api']
                 job.comment=data['comment']
                 
