@@ -17,9 +17,10 @@ Base = declarative_base()
 class Jobs(Base):
     __tablename__ = "jobs"
     id = Column(Integer, primary_key=True)
+    llm = Column(String(256), nullable=False)
     update_time = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.current_timestamp())
     job_name = Column(String(256), nullable=False)
-    job_nlu = Column(String(256), nullable=False)
+    job_nlu = Column(JSON, index=True, nullable=False)
     slot_json = Column(JSON, index=True, nullable=True)
     api = Column(String(256), nullable=False)
     api_type = Column(String(64), nullable=False)
