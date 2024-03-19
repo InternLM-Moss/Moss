@@ -168,7 +168,7 @@
                                     "type": "textarea",
                                     "name": "txt_msg",
                                     "label": "返回文本信息",
-                                    "visibleOn": "${api_type === 'txt_msg'}",
+                                    "visibleOn": "${api_type === 'txt'}",
                                     "placeholder": "",
                                     "required": true
                                 },
@@ -211,7 +211,7 @@
                     "label": "调用方式",
                     "type": "mapping",
                     "map": {
-                        "txt_msg": "<span class='label label-success'>文本信息</span>",
+                        "txt": "<span class='label label-success'>文本信息</span>",
                         "post": "<span class='label label-success'>POST</span>",
                         "get": "<span class='label label-success'>GET</span>",
                         "*": "<span class='label label-danger'>错误</span>"
@@ -294,7 +294,7 @@
                                             "options": [
                                                 {
                                                     "label": "文本信息",
-                                                    "value": "txt_msg"
+                                                    "value": "txt"
                                                 },
                                                 {
                                                     "label": "POST",
@@ -408,7 +408,7 @@
                                             "type": "textarea",
                                             "name": "txt_msg",
                                             "label": "返回文本信息",
-                                            "visibleOn": "${api_type === 'txt_msg'}",
+                                            "visibleOn": "${api_type === 'txt'}",
                                             "placeholder": "",
                                             "required": true
                                         },

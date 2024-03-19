@@ -40,10 +40,10 @@ class InferenceWrapper:
     def __init__(self, model_path: str):
         """Init model handler."""
 
-        if check_gpu_max_memory_gb() < 20:
-            logger.warning(
-                'GPU mem < 20GB, try Experience Version or set llm.server.local_llm_path="Qwen/Qwen-7B-Chat-Int8" in `config.ini`'  # noqa E501
-            )
+        #if check_gpu_max_memory_gb() < 20:
+        #    logger.warning(
+        #        'GPU mem < 20GB, try Experience Version or set llm.server.local_llm_path="Qwen/Qwen-7B-Chat-Int8" in `config.ini`'  # noqa E501
+        #    )
 
         self.tokenizer = AutoTokenizer.from_pretrained(model_path,
                                                        trust_remote_code=True)
@@ -156,7 +156,7 @@ class LLMServer:
             remote = False
             logger.error('llm.enable_remote off, auto set remote=False')
 
-        
+
         prompt = prompt[0:self.local_max_length]
         """# Caution: For the results of this software to be reliable and verifiable,  # noqa E501
         it's essential to ensure reproducibility. Thus `GenerationMode.GREEDY_SEARCH`  # noqa E501
@@ -204,9 +204,9 @@ def llm_serve(config_path: str, server_ready: Value):
 
     try:
         server = LLMServer(llm_config=llm_config)
-        server_ready.value = 1
+        #server_ready.value = 1
     except Exception as e:
-        server_ready.value = -1
+        #server_ready.value = -1
         raise (e)
 
     async def inference(request):

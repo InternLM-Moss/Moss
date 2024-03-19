@@ -32,13 +32,13 @@ class API_Jobs(object):
                 
                 txt_msg = ""
                 slot_json = []
-                web_msg = ""
+                #web_msg = ""
                 try:
                     slot_json = eval(j['slot_json'])
-                    web_msg = j['api']
+                    #web_msg = j['api']
                 except:
                     txt_msg = j['txt_msg']
-                    web_msg = txt_msg
+                    #web_msg = txt_msg
 
 
                 data['rows'].append(
@@ -50,7 +50,6 @@ class API_Jobs(object):
                     "job_nlu_web":job_nlu_web,
                     "slot_json": slot_json,
                     "api_type": j['api_type'],
-                    "web_msg": web_msg,
                     "txt_msg": txt_msg,
                     "api": j['api'],
                     "llm": j['llm'],
@@ -68,7 +67,7 @@ class API_Jobs(object):
         
         with api_utils.session_scope() as session:
 
-            if data['api_type'] == 'txt_msg':
+            if data['api_type'] == 'txt':
                 slot_json = None
                 api = ""
                 txt_msg = data['txt_msg']

@@ -103,7 +103,7 @@ class Worker:
                     u_redis.set(session_name, pickle.dumps(session_data))
                     return ErrorCode.SUCCESS, "任务已取消", references
                 # 确认任务，以及开始执行任务
-                if session_data["need_confirm"]:
+                elif session_data["need_confirm"]:
                     response, session_data = self.jobtask.confirm_task(query, session_data)
                     u_redis.set(session_name, pickle.dumps(session_data))
                     return ErrorCode.SUCCESS, response, references
@@ -114,8 +114,9 @@ class Worker:
                     return ErrorCode.SUCCESS, response, references
             else:
                 #检测语句是否有task执行
-                if self.jobtask.is_ask_task(query):
-                    response, session_data = self.jobtask.new_task(query, session_data)
+                jobtask = self.jobtask.is_ask_task(query)
+                if jobtask:
+                    response, session_data = self.jobtask.new_task(query, session_data, jobtask)
                     u_redis.set(session_name, pickle.dumps(session_data))
                     return ErrorCode.SUCCESS, response, references
                 else:

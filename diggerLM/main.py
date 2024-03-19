@@ -5,7 +5,8 @@ import argparse
 import os
 import sys
 import time
-from multiprocessing import Process, Value
+#from multiprocessing import Process, Value
+from torch.multiprocessing import Pool, Process, set_start_method
 
 import redis
 import pytoml
@@ -43,7 +44,7 @@ def check_env(args):
     CONFIG_NAME = 'config.ini'
     if not os.path.exists(CONFIG_NAME):
         logger.error(f'Failed to download file due to {CONFIG_NAME}')
-        raise 
+        raise
 
     if not os.path.exists(args.work_dir):
         logger.warning(
@@ -103,24 +104,18 @@ def run():
 
     if args.run:
         # hybrid llm serve
-        server_ready = Value('i', 0)
-        
+
+        try:
+            set_start_method('spawn',force=True)
+        except RuntimeError:
+            pass
         server_process = Process(target=llm_serve,
-                                 args=(args.config_path, server_ready))
+                                 args=(args.config_path,''))
         server_process.daemon = True
         server_process.start()
-        while True:
-            if server_ready.value == 0:
-                logger.info('waiting for server to be ready..')
-                time.sleep(3)
-            elif server_ready.value == 1:
-                break
-            else:
-                logger.error('start local LLM server failed, quit.')
-                raise Exception('local LLM path')
         logger.info('LLMServer start.')
 
-    
+
     # query by worker
     with open(args.config_path, encoding='utf8') as f:
         fe_config = pytoml.load(f)['frontend']
