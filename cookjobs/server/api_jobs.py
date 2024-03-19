@@ -50,6 +50,7 @@ class API_Jobs(object):
                     "txt_msg": j['txt_msg'],
                     "api": j['api'],
                     "llm": j['llm'],
+                    "cus_resp": j['cus_resp'],
                     "comment":j['comment'],
                     }
                 )
@@ -86,6 +87,7 @@ class API_Jobs(object):
                             slot_json=slot_json,
                             txt_msg=txt_msg,
                             api=api,
+                            cus_resp=data['cus_resp'],
                             api_type=data['api_type'],
                             comment=comment
                             )
@@ -139,6 +141,7 @@ class API_Jobs(object):
                 job.slot_json= str(data['slot_json'])
                 job.txt_msg=data['txt_msg']
                 job.api=data['api']
+                job.cus_resp=data['cus_resp']
                 job.comment=data['comment']
                 
                 resp.body = api_utils.response(0, "更新Moss成功", {})

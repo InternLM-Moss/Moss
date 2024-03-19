@@ -25,6 +25,7 @@ class Jobs(Base):
     txt_msg = Column(String(256), nullable=True)
     api = Column(String(256), nullable=False)
     api_type = Column(String(64), nullable=False)
+    cus_resp = Column(String(256), nullable=True)
     comment = Column(String(256), nullable=True)
     create_time = Column(DateTime(timezone=True), server_default=func.now())
 

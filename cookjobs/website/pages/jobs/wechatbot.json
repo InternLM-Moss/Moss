@@ -161,8 +161,15 @@
                                     "name": "api",
                                     "label": "调用api地址",
                                     "visibleOn": "${OR(api_type === 'post', api_type === 'get')}",
-                                    "placeholder": "可引用槽位变量，如使用GET请求：https://xxx.xxx.com/apitest?key1={{solt_name1}}&key2={{slot_name2}}",
+                                    "placeholder": "使用双大括号引用槽位变量，如使用GET请求：\nhttps://xxx.xxx.com/apitest?key1={{solt_name1}}&key2={{slot_name2}}",
                                     "required": true
+                                },
+                                {
+                                    "type": "textarea",
+                                    "name": "cus_resp",
+                                    "label": "自定义返回",
+                                    "visibleOn": "${OR(api_type === 'post', api_type === 'get')}",
+                                    "placeholder": "若请求返回为Json, 可使用resp变量引用返回数据。\n例如：返回Json为 {'xxx':'yyy'}, 可使用变量: resp['xxx']"
                                 },
                                 {
                                     "type": "textarea",
@@ -255,7 +262,8 @@
                                             "slot_json": "${slot_json}",
                                             "api": "${api}",
                                             "txt_msg": "${txt_msg}",
-                                            "comment": "${comment}"
+                                            "comment": "${comment}",
+                                            "cus_resp": "${cus_resp}"
                                         }
                                     },
                                     "body": [
@@ -403,6 +411,13 @@
                                             "visibleOn": "${OR(api_type === 'post', api_type === 'get')}",
                                             "placeholder": "可引用槽位变量，如使用GET请求：https://xxx.xxx.com/apitest?key1={{solt_name1}}&key2={{slot_name2}}",
                                             "required": true
+                                        },
+                                        {
+                                            "type": "textarea",
+                                            "name": "cus_resp",
+                                            "label": "自定义返回",
+                                            "visibleOn": "${OR(api_type === 'post', api_type === 'get')}",
+                                            "placeholder": "若请求返回为Json, 可使用resp变量引用返回数据。\n例如：返回Json为 {'xxx':'yyy'}, 可使用变量: resp['xxx']"
                                         },
                                         {
                                             "type": "textarea",

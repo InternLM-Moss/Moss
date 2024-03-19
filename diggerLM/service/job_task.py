@@ -109,7 +109,7 @@ class JobTask:
 
             # step 3 返回确认信息
             if session_data['need_confirm']:
-                response = "请确认任务： {}:".format(session_data['jobtask']['job_name'])
+                response = "【请确认】：\n {}:".format(session_data['jobtask']['job_name'])
                 for k, v in session_data['jobtask']["slot"].items():
                     i = "\n - {}: {}".format(k, v)
                     response = response + i 
@@ -181,6 +181,11 @@ class JobTask:
         if jobtask['api_type'] == 'post':
             return requests.post(api, data=json.dumps(session_data['jobtask']["slot"])).text
         elif jobtask['api_type'] == 'get':
+            result = None
+            try:
+                result = requests.get(api).json
+            except:
+                result = requests.get(api).text
             return requests.get(api).text
         else:
             return None
