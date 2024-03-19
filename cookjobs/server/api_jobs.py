@@ -38,7 +38,7 @@ class API_Jobs(object):
                     web_msg = j['api']
                 except:
                     txt_msg = j['txt_msg']
-                    web_msg = txt_msg
+                    #web_msg = txt_msg
 
 
                 data['rows'].append(
@@ -51,6 +51,7 @@ class API_Jobs(object):
                     "slot_json": slot_json,
                     "api_type": j['api_type'],
                     "txt_msg": txt_msg,
+                    "web_msg": web_msg,
                     "api": j['api'],
                     "llm": j['llm'],
                     "comment":j['comment'],
