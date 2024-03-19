@@ -169,7 +169,7 @@
                                     "name": "cus_resp",
                                     "label": "自定义返回",
                                     "visibleOn": "${OR(api_type === 'post', api_type === 'get')}",
-                                    "placeholder": "若请求返回为Json, 可使用resp变量引用返回数据。\n例如：返回Json为 {'xxx':'yyy'}, 可使用变量: resp['xxx']"
+                                    "placeholder": "若请求返回为Json, 可使用双大括号变量引用返回数据。\n例如：返回Json为 {'xxx':'yyy'}, 可使用变量: {{xxx}} 值为 yyy"
                                 },
                                 {
                                     "type": "textarea",

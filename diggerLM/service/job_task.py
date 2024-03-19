@@ -96,7 +96,7 @@ class JobTask:
                     key = slot['slot_key']
                     value = slot_res_map.get(key)
                     if value is None or "未提及" in value or "为空" in value:
-                        response = slot['slot_desc']
+                        response = '好的，' + slot['slot_desc']
                         logger.debug(f"will resp: {response}")
                         tmp_mark = False
                         return response, session_data
@@ -178,17 +178,22 @@ class JobTask:
         #slot_json = eval(session_data['jobtask']["slot_json"])
         api = Template(jobtask['api']).render(jobtask['slot'])
         logger.debug(f"api url: {api}")
+        result = None
         if jobtask['api_type'] == 'post':
-            return requests.post(api, data=json.dumps(session_data['jobtask']["slot"])).text
+            result= requests.post(api, data=json.dumps(session_data['jobtask']["slot"])).text
         elif jobtask['api_type'] == 'get':
-            result = None
-            try:
-                result = requests.get(api).json
-            except:
-                result = requests.get(api).text
-            return requests.get(api).text
+            result = requests.get(api).text
         else:
             return None
+
+        # 若设置自定义返回，则进行变量替换
+        if result and len(jobtask['cus_resp']) > 0:
+            try:
+                result = Template(jobtask['cus_resp']).render(json.loads(result))
+            except:
+                logger.warning(f"Jinja2 template: {jobtask['cus_resp']} data: {json.loads(result)} failed")
+                
+        return result
 
     def step1_get_job_nlu(self, content):
         job_nlu_list = []
