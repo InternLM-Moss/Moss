@@ -32,13 +32,13 @@ class API_Jobs(object):
                 
                 txt_msg = ""
                 slot_json = []
-                #web_msg = ""
+                web_msg = ""
                 try:
                     slot_json = eval(j['slot_json'])
-                    #web_msg = j['api']
+                    web_msg = j['api']
                 except:
                     txt_msg = j['txt_msg']
-                    #web_msg = txt_msg
+                    web_msg = txt_msg
 
 
                 data['rows'].append(
