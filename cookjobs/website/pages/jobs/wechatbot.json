@@ -218,7 +218,7 @@
                     }
                 },
                 {
-                    "name": "web_msg",
+                    "name": "${IFS(api,api, txt_msg, txt_msg)}",
                     "label": "调用信息"
                 },
                 {

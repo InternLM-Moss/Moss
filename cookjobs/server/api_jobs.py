@@ -30,15 +30,12 @@ class API_Jobs(object):
                 for nlu in eval(j['job_nlu']['job_nlu']):
                     job_nlu_web.append({"item":nlu['job_nlu_item']})
                 
-                txt_msg = ""
+                
                 slot_json = []
-                web_msg = ""
                 try:
                     slot_json = eval(j['slot_json'])
-                    web_msg = j['api']
                 except:
-                    txt_msg = j['txt_msg']
-                    #web_msg = txt_msg
+                    pass
 
 
                 data['rows'].append(
@@ -50,8 +47,7 @@ class API_Jobs(object):
                     "job_nlu_web":job_nlu_web,
                     "slot_json": slot_json,
                     "api_type": j['api_type'],
-                    "txt_msg": txt_msg,
-                    "web_msg": web_msg,
+                    "txt_msg": j['txt_msg'],
                     "api": j['api'],
                     "llm": j['llm'],
                     "comment":j['comment'],
