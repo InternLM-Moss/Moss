@@ -1,18 +1,31 @@
 from similarities import BertSimilarity
 
 from loguru import logger
+import re
 
 class NLP_Similar:
     def __init__(self,model_name_or_path):
         self.nlp_model = BertSimilarity(model_name_or_path=model_name_or_path)
+        self.cn_regx = re.compile("[^\u4e00-\u9fa5^a-z^A-Z^0-9]") 
 
+    def str_regx(self, content):
+        """
+        去除非汉字、字母、数字类符号，减少干扰
+        """
+        content = self.cn_regx.sub('', content)
+        return content
+    
     def search(self, query, jobtask_data, score=0.85, topN=1):
+        #将查询语句，去除符号字符
+        query = self.str_regx(query)
+
         corpus = []
         corpus_dict = {}
         for i in jobtask_data['data']['rows']:
             for n in i['job_nlu']:
-                corpus.append(n['job_nlu_item'])
-                corpus_dict[n['job_nlu_item']] = i
+                nlu_item = self.str_regx(n['job_nlu_item'])
+                corpus.append(nlu_item)
+                corpus_dict[nlu_item] = i
 
 
         self.nlp_model.add_corpus(corpus)
