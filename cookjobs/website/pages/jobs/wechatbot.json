@@ -52,7 +52,7 @@
                                     "options": [
                                         {
                                             "label": "文本信息",
-                                            "value": "txt_msg"
+                                            "value": "txt"
                                         },
                                         {
                                             "label": "POST",
