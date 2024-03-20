@@ -69,6 +69,7 @@ class API_Jobs(object):
                 slot_json = None
                 api = ""
                 txt_msg = data['txt_msg']
+                data['cus_resp'] = ""
             else:
                 slot_json = str(data['slot_json'])
                 api = data['api']
