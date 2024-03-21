@@ -92,4 +92,5 @@ def __classify_chat_type(chat_line):
     elif find_control_with_text_list(chat_line, ["撤回了一条消息", "recalled a message"]) is not None:
         return "recall", find_control_with_text_list(chat_line, ["撤回了一条消息", "recalled a message"]).Name, None
     elif find_control_with_control_type(chat_line, "ButtonControl") is not None:
-        return "chat", find_control_with_control_type(chat_line, "ButtonControl").Name, chat_line.Name
+        if chat_line.Name is not None:
+            return "chat", find_control_with_control_type(chat_line, "ButtonControl").Name, chat_line.Name

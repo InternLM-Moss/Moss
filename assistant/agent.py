@@ -68,7 +68,7 @@ def execute(num):
                 ret = call_moss("DirectMessage", username, content)
             else:
                 # 群聊，@了才回复
-                pattern = re.compile("(.*)\\s说\\s@" + bot_name + "\\s(.*)")
+                pattern = re.compile("(.*)\\s说\\s@" + bot_name + "\\s?(.*)")
                 match = pattern.match(latest_chat)
                 if match:
                     username = match.group(1)
